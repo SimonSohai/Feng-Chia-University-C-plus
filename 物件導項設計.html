@@ -164,7 +164,7 @@
 		</nav>
 	</div>
     <h3>撰寫者：郭子綸</h3>
-    <h1>解構元解構元與拷貝建構元構元</h1>
+    <h1>解構元與拷貝建構元</h1>
     <img src="https://i.imgur.com/Owj1P8a.png">
 
     <div>
@@ -225,6 +225,132 @@
         system("pause");<br>
         return 0;</blockquote>
     }                   
+</div>
+<hr>
+    <h1>基本陣列操作與數據處理</h1>
+    <img src="https://i.postimg.cc/LXfhDSkj/image.png">
+    <img src="https://i.postimg.cc/NM4FS4V0/image.png">
+
+    <div>
+    <h2>計算陣列大小，找出陣列中的最大和最小值，讓使用者輸入分數並計算平均值。程式還處理和顯示了二維和三維陣列的數據，並使用函數來顯示學生成績和計算平均成績。主要是了解如何使用C++來操作和處理各種數據。</h2><br>
+    <hr><br>
+    <h3>程式碼</h3>
+
+#include <iostream><br>
+#include <cstdlib><br>
+using namespace std;<br>
+
+// 定義常數<br>
+#define MAX 5<br>
+#define SIZE 5<br>
+
+// 函數宣告<br>
+void show(int[]);<br>
+double average(int[]);<br>
+
+int main()<br>
+{<br>
+    // 定義長整型陣列<br>
+    long long score[6];<br>
+    cout << "sizeof(score[1]=" << sizeof(score[1]) << endl; // 顯示陣列元素的大小<br>
+    cout << "sizeof(score)" << sizeof(score) << endl; // 顯示整個陣列的大小<br>
+
+    // 定義並初始化整型陣列<br>
+    int A[] = { 48,70,30,17,62 };<br>
+    int i, min = A[0], max = A[0];<br>
+    int length = sizeof(A) / sizeof(int); // 計算陣列長度<br>
+
+    cout << "Elements in array A are";<br>
+    // 迴圈遍歷陣列元素<br>
+    for (i = 0; i < length; i++)<br>
+    {<br>
+        cout << A[i] << " "; // 顯示元素<br>
+        if (A[i] > max) // 找最大值<br>
+            max = A[i];<br>
+        if (A[i] < min) // 找最小值<br>
+            min = A[i];<br>
+    }<br>
+    // 顯示最大值和最小值<br>
+    cout << endl << "Maximum is " << max;<br>
+    cout << endl << "Minimum is " << min << endl;<br>
+
+    // 定義一個新的整型陣列<br>
+    int score1[MAX];<br>
+    int ii = 0, num;<br>
+    float sum = 0.0f;<br>
+    cout << "Enter -1 stopping input" << endl;<br>
+    // 迴圈輸入成績，直到輸入-1或達到最大空間<br>
+    do<br>
+    {<br>
+        if (ii == MAX)<br>
+        {<br>
+            cout << "No more space!!" << endl;<br>
+            ii++;<br>
+            break;<br>
+        }<br>
+        cout << "Input score:";<br>
+        cin >> score1[ii];<br>
+    } while (score1[ii++] >= 0);<br>
+
+    num = ii - 1; // 計算有效的輸入數<br>
+    for (ii = 0; ii < num; ii++) // 計算總和<br>
+        sum += score1[ii];<br>
+    cout << "Average of all is" << sum / num << endl; // 顯示平均值<br>
+
+    // 定義2x4的整型陣列並初始化<br>
+    int i1, j1, sum1 = 0;<br>
+    int sale[2][4] = { {30,35,26,32},{33,34,30,29} };<br>
+    // 迴圈遍歷陣列並計算總和<br>
+    for (i1 = 0; i1 < 2; i1++)<br>
+    {<br>
+        cout << "業務員" << (i1 + 1) << "的業績分別為 ";<br>
+        for (j1 = 0; j1 < 4; j1++)<br>
+        {<br>
+            cout << sale[i1][j1] << " ";<br>
+            sum1 += sale[i1][j1];<br>
+        }<br>
+        cout << endl;<br>
+    }<br>
+    cout << "本年度總銷售量為:" << sum1 << "輛車" << endl;<br>
+
+    // 定義3D整型陣列並初始化
+    int AA[2][4][3] = { {{21,32,65},{78,94,76},{79,44,65},{89,54,73}},{{32,56,89},{43,23,32},{32,56,78},{94,78,45}} };<br>
+    int i2, j2, k2, max2 = AA[0][0][0];<br>
+    // 迴圈遍歷3D陣列並找出最大值<br>
+    for (i2 = 0; i2 < 2; i2++)<br>
+        for (j2 = 0; j2 < 4; j2++)<br>
+            for (k2 = 0; k2 < 3; k2++)<br>
+                if (max2 < AA[i2][j2][k2])<br>
+                    max2 = AA[i2][j2][k2];<br>
+    cout << "max=" << max2 << endl; // 顯示最大值<br>
+
+    // 定義並初始化整型陣列<br>
+    int score2[SIZE] = { 89,54,73,95,71 };<br>
+    cout << "學生成績為 ";<br>
+    show(score2); // 顯示成績<br>
+    cout << "平均成績=" << average(score2) << endl; // 顯示平均成績<br>
+
+    system("pause");<br>
+}<br>
+
+// 顯示陣列元素的函數<br>
+void show(int a[])<br>
+{<br>
+    for (int i = 0; i < SIZE; i++)<br>
+        cout << a[i] << " ";<br>
+    cout << endl;<br>
+    return;<br>
+}<br>
+
+// 計算陣列平均值的函數<br>
+double average(int a[])<br>
+{<br>
+    double sum = 0;<br>
+    for (int i = 0; i < SIZE; i++)<br>
+        sum += a[i];<br>
+    return (sum / SIZE);<br>
+}
+                
 </div>
 </body>
 </html>
